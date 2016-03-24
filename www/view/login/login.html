@@ -1,0 +1,62 @@
+<ion-view title="Login">
+	<ion-side-menus enable-menu-with-back-views="true">
+		<ion-side-menu-content>
+            <div style="height: 25px"></div>
+            <div style="text-align:center; margin-left:auto; margin-right:auto;">
+				<img src="./img/TMS-logo.jpg" width="120px;" height="120px;">
+			</div>
+			<div class="list list-inset">
+                <div class="item item-divider">
+                    <span ng-bind="logininfo.strRole"></span>
+                </div>
+				<label class="item item-input" ng-show="funcRoleJuage(1)">
+					<i class="icon ion-android-call placeholder-icon"></i>&nbsp;&nbsp;
+					<input type="tel" id="iPhoneNumber" placeholder="Phone Number" required ng-model="logininfo.strPhoneNumber">
+				</label>
+                <label class="item item-input" ng-show="funcRoleJuage(2)">
+                    <i class="icon ion-android-person placeholder-icon"></i>&nbsp;&nbsp;
+                    <input type="tel" id="iCustomerCode" placeholder="User ID" required ng-model="logininfo.strCustomerCode">
+                </label>
+                <label class="item item-input" ng-show="funcRoleJuage(2)">
+                    <i class="icon ion-android-folder-open placeholder-icon"></i>&nbsp;&nbsp;
+                    <input type="tel" id="iJobNo" placeholder="Event Job No" required ng-model="logininfo.strJobNo">
+                </label>
+				<button class="button button-block button-positive" ng-click="funcLogin(false)">SIGN IN</button>
+			</div>
+            <div class="list list-inset">
+                <a class="button button-small button-clear button-positive" ng-click="funcChangeRole()">
+                    <i class="icon ion-help-circled"></i>&nbsp;&nbsp;Change Role
+                </a>
+                <a class="button button-small button-clear button-positive pull-right">
+                    Forgot password ?
+                </a>
+            </div>
+            <div class="list list-inset" style="margin-top:1em;">
+				<button class="button button-block button-outline button-stable" ng-click="funcLogin(true)">
+                    Don't have an account ? Touch Here
+                </button>
+            </div>
+            <div class="bar bar-footer bar-light">
+              <div class="title">
+                  <span class="h6" style="color:#b2b2b2;">&copy; 2016 SysMagic</span>
+              </div>
+            </div>
+		</ion-side-menu-content>
+		<ion-side-menu side="left">
+			<ion-header-bar align-title="center" class="bar-positive" nav-clear menu-close>
+				<h1 class="title">Settings</h1>
+			</ion-header-bar>
+			<ion-pane>
+                <div style="height: 43px"></div>
+				<ion-list>
+					<ion-item nav-clear ng-click="funcSetConf()">
+						<i class="icon ion-android-settings"></i> Config Setting
+					</ion-item>
+                    <ion-item nav-clear ng-click="funcCheckUpdate()">
+                        <i class="icon ion-arrow-up-c"></i> Check Update
+                    </ion-item>
+				</ion-list>
+			</ion-pane>
+		</ion-side-menu>
+	</ion-side-menus>
+</ion-view>

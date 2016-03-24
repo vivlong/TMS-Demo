@@ -1,0 +1,54 @@
+<ion-view title="JobDetail">
+	<ion-header-bar class="bar-positive">
+		<button class="button button-icon icon ion-android-arrow-back" ng-click="returnList()"></button>
+		<div class="h1 title">
+            <span ng-bind="strDoneOrUpdateTitle"></span>
+        </div>
+	</ion-header-bar>
+	<ion-pane>
+        <div style="height: 43px"></div>
+		<div class="list card">
+			<div class="item">
+				<h2>Task Name&nbsp;&nbsp;:&nbsp;&nbsp;<span ng-bind="detail.Description"></span></h2>
+				<p>Container No&nbsp;&nbsp;:&nbsp;&nbsp;<span ng-bind="detail.ContainerNo"></span></p>
+			</div>
+			<div class="item item-body">
+                <div class="list">
+                    <label class="item item-input item-stacked-label" ng-if="detail.Type=='DONE'">
+                        <i class="icon ion-android-calendar placeholder-icon"></i>
+                        <span class="input-label">Completed Time</span>
+                        <input type="datetime" ng-model="Update.strDatetime" date-Format readonly>
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <i class="icon ion-android-document placeholder-icon"></i>
+                        <span class="input-label">Container No</span>
+                        <input name="ContainerNo" type="text" ng-model="Update.ContainerNo" ng-readonly="detail.Type!='UPDATE'">
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <i class="icon ion-android-document placeholder-icon"></i>
+                        <span class="input-label">Remark</span>
+                        <textarea name="remark" class="comments" ng-model="Update.remark" placeholder="remark something here." rows="4em" cols="1" ng-readonly="detail.Type!='UPDATE'"></textarea>
+                    </label>
+                    <label class="item item-input">
+                        <i class="icon ion-paintbrush"></i>&nbsp;&nbsp;
+                        <span class="input-label">Signature</span>
+                    </label>
+                    <div style="height: 4px"></div>
+                    <div>
+                        <canvas id='signatureCanvas' width="323" height="140" style="border: 1px solid black;" ng-show="signature==null"></canvas>
+                        <img ng-src='{{signature}}' ng-show="signature!=null"/>
+                        <a class="button icon-left ion-android-refresh button-clear button-dark" ng-click="clearCanvas()">Clear</a>
+                        <a class="button icon-left ion-android-done button-clear button-dark" ng-click="saveCanvas()" ng-show="signature==null">Save</a>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</ion-pane>
+	<ion-footer-bar>
+		<div class="button-bar">
+			<a class="button button-positive" ng-click="update()" ng-bind="strDoneOrUpdate" ng-disabled="detail.$invalid" ng-if="detail.Type!='OPEN'"></a>
+			<a class="button button-light" ng-click="returnList()" ng-if="detail.Type!='OPEN'">Cancel</a>
+			<a class="button button-positive" ng-click="returnList()" ng-if="detail.Type=='OPEN'">Return</a>
+		</div>
+	</ion-footer-bar>
+</ion-view>
